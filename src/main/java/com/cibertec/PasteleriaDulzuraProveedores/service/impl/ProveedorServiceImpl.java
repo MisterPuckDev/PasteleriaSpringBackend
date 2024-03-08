@@ -73,5 +73,10 @@ public class ProveedorServiceImpl implements ProveedorService{
 		return proveedorRepo.listaConsulta(razonSocial, ruc, estado);
 	}
 
+	@Override
+	public List<Proveedor> listarTodosLosProveedores() {
+		return proveedorRepo.findAll();
+	}
+
 
 }
