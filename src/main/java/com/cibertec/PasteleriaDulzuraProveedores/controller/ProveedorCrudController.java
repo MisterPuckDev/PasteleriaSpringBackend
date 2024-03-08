@@ -46,6 +46,14 @@ public class ProveedorCrudController {
         return ResponseEntity.ok(lista);
     }
     
+    @GetMapping("/listaProveedor")
+    @ResponseBody
+    public ResponseEntity<List<Proveedor>> listarTodosLosProveedores() {
+        List<Proveedor> lista = service.listarTodosLosProveedores(); // Asegúrate de que este método exista en tu servicio
+        return ResponseEntity.ok(lista);
+    }
+    
+    
     @GetMapping("/detalleProveedor/{id}")
     @ResponseBody
     public ResponseEntity<Proveedor> obtieneProveedorPorId(@PathVariable("id") int proveedorId) {

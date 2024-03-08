@@ -23,4 +23,7 @@ public interface ProveedorService {
 		//Consulta
 		public abstract List<Proveedor> listaConsulta(String razonSocial, String ruc, int estado);
 		
+		// Método para listar todas las categorías
+	    List<Proveedor> listarTodosLosProveedores();
+		
 	}
