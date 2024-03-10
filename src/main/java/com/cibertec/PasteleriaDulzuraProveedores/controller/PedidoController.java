@@ -1,21 +1,19 @@
 package com.cibertec.PasteleriaDulzuraProveedores.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cibertec.PasteleriaDulzuraProveedores.model.Pedido;
 import com.cibertec.PasteleriaDulzuraProveedores.service.PedidoService;
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/url/pedido")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PedidoController {
 	
 	@Autowired
@@ -25,10 +23,19 @@ public class PedidoController {
 	public ResponseEntity<List<Pedido>> list(){
 		return  new ResponseEntity<>(pedidoService.listPedido(), HttpStatus.OK)  ;
 	}
-	
-	@PostMapping
-	public ResponseEntity<Pedido> add(@RequestBody Pedido p) {
-		return new ResponseEntity<>(pedidoService.add(p), HttpStatus.CREATED);
-	}	
+
+	@ResponseBody
+	@PostMapping("/registraProducto")
+	public HashMap<String, Object> registraBoleta(@RequestBody Pedido objPedido){
+		HashMap<String, Object> mapSalida = new HashMap<String, Object>();
+		Pedido objPedidoSalida = pedidoService.add(objPedido);
+		if (objPedidoSalida != null) {
+			mapSalida.put("mensaje", "Se registró el pedido");
+			mapSalida.put("data", objPedidoSalida);
+		}else {
+			mapSalida.put("mensaje", "Error en el registro del pedido");
+		}
+		return mapSalida;
+	}
 	
 }
