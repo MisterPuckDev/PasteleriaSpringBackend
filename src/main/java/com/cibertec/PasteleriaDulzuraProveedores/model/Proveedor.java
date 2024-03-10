@@ -49,13 +49,9 @@ public class Proveedor {
 	// Métodos de reporte
     public String getReporteEstado() {
         return estado == 1 ? "Activo" : "Inactivo";
-    }    
+    }  
 
-    public String getReporteSuministro() {
-        return suministro.getDescripcion();
-    }
-
-    public String getReporteFechaRegistro() {
+    public String getReporteFecha() {
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     	return sdf.format(fechaRegistro);
     }
